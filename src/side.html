@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Side Recipes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #353535;
+        }
+        h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: hsl(23, 89%, 56%);
+        }
+        .navbar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .navbar a {
+            display: flex;
+            align-items: center;
+            padding: 5px;
+            margin: 0 5px;
+            text-decoration: none;
+            color: hsl(23, 100%, 61%);
+            font-weight: bold;
+        }
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+        .navbar a i {
+            margin-right: 5px;
+        }
+        .meal-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 100%;
+        }
+        .meal-card {
+            border: 1px solid #0a0a0a;
+            border-radius: 8px;
+            margin: 16px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            width: 200px;
+            text-align: center;
+            background-color: #fa632c;
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+            position: relative; /* For positioning the favorite icon */
+        }
+        .meal-card:hover {
+            transform: scale(1.05);
+        }
+        .meal-card img {
+            width: 100%;
+            height: auto;
+        }
+        .meal-card .meal-name {
+            padding: 16px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            position: relative;
+        }
+        .meal-card .favorite-icon {
+            position: absolute;
+            top: 16px; /* Adjust as needed */
+            right: 16px; /* Adjust as needed */
+            font-size: 24px; /* Adjust size here */
+            color: #333;
+            cursor: pointer;
+            transition: color 0.2s ease-in-out;
+        }
+        .meal-card .favorite-icon.favorited {
+            color: rgb(230, 1, 73);
+        }
+        /* Modal Styles */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgba(0,0,0,0.4); 
+        }
+        .modal-content {
+            background-color: #ff956c;
+            margin: 5% auto; 
+            padding: 20px;
+            border: 1px solid #000000;
+            width: 80%; 
+            max-width: 800px; /* Optional: Limit the maximum width of the modal */
+            display: flex; /* Use flexbox for layout */
+            flex-direction: column; /* Stack image and text vertically */
+        }
+        .close {
+            color: #000000;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .modal-img-container {
+            display: flex;
+            gap: 20px; /* Space between image and ingredients */
+            margin-bottom: 20px; /* Space below the image and ingredients section */
+        }
+        .meal-img {
+            width: 50%;
+            height: auto;
+            max-width: 400px; /* Limit the maximum width of the image */
+        }
+        .modal-text {
+            flex: 1; /* Allow text to fill remaining space */
+        }
+        .modal-text h2,
+        .modal-text p,
+        .modal-text ul,
+        .modal-text ol {
+            margin: 0;
+            margin-bottom: 10px;
+        }
+        .modal-text ul {
+            padding-left: 20px;
+        }
+        .modal-text ol {
+            padding-left: 20px;
+            list-style-type: none; /* Remove default numbers */
+        }
+        .modal-text ol .step {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 10px;
+        }
+        .modal-text ol .step::before {
+            content: '\2022'; /* Unicode for dot */
+            position: absolute;
+            left: 0;
+            color: #333; /* Change the color if needed */
+        }
+        /* Optional: For better responsive behavior */
+        @media (max-width: 768px) {
+            .modal-content {
+                flex-direction: column; /* Stack image and text vertically on smaller screens */
+            }
+            .modal-img-container {
+                flex-direction: column; /* Stack image and ingredients vertically on smaller screens */
+                align-items: center; /* Center items */
+            }
+            .meal-img {
+                width: 100%;
+                max-width: none; /* Allow the image to be responsive */
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Side Recipes</h1>
+    <div class="navbar">
+        <a href="index.html"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+        <a href="recipes.html"><i class="fa fa-list" aria-hidden="true"></i> Category</a>
+        <a href="vegan.html"><i class="fa fa-envira" aria-hidden="true"></i> Vegan</a>
+        <a href="beef.html"><i class="fa fa-cutlery" aria-hidden="true"></i> Beef</a>
+        <a href="chicken.html"><i class="fa fa-fire" aria-hidden="true"></i> Chicken</a>
+        <a href="lamb.html"><i class="fa fa-paw" aria-hidden="true"></i> Lamb</a>
+        <a href="miscellaneous.html"><i class="fa fa-puzzle-piece" aria-hidden="true"></i> Miscellaneous</a>
+        <a href="pasta.html"><i class="fa fa-spoon" aria-hidden="true"></i> Pasta</a>
+        <a href="seafood.html"><i class="fa fa-anchor" aria-hidden="true"></i> Seafood</a>
+        <a href="side.html"><i class="fa fa-lemon-o" aria-hidden="true"></i> Side</a>
+        <a href="starter.html"><i class="fa fa-play-circle" aria-hidden="true"></i> Starter</a>
+        <a href="vegetarian.html"><i class="fa fa-leaf" aria-hidden="true"></i> Vegetarian</a>
+        <a href="fav.html"><i class="fa fa-star" aria-hidden="true"></i> Fav</a>
+    </div>
+
+    <div id="meal-container" class="meal-container" role="region" aria-labelledby="meal-container-title">
+        <!-- Meals will be inserted here by JavaScript -->
+    </div>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal" role="dialog" aria-labelledby="meal-name" aria-describedby="modal-description">
+        <div class="modal-content">
+            <span class="close" aria-label="Close">&times;</span>
+            <div class="modal-img-container">
+                <img id="meal-img" class="meal-img" alt="Meal Image">
+                <div class="modal-text">
+                    <h2 id="meal-name"></h2>
+                    <p><strong>Origin:</strong> <span id="meal-origin"></span></p>
+                    <div class="modal-ingredients">
+                        <h2>Ingredients</h2>
+                        <ul id="meal-ingredients"></ul>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-instructions">
+                <h2>Instructions and Measurements</h2>
+                <ol id="meal-instructions"></ol>
+            </div>
+            <a id="meal-url" target="_blank" aria-label="Watch on YouTube">Watch on YouTube</a>
+        </div>
+    </div>
+
+    <script src="side.js"></script>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Recipes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #353535;
+        }
+        h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: hsl(23, 89%, 56%);
+        }
+        .meal-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px; /* Adjust gap between cards */
+        }
+        .meal-card {
+            border: 1px solid #0a0a0a;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            width: 200px;
+            text-align: center;
+            background-color: #fa632c;
+            text-decoration: none; /* Remove default link styling */
+            color: inherit; /* Inherit text color */
+            display: flex; /* Ensure cards are displayed as flex items */
+            flex-direction: column; /* Align content in a column */
+        }
+        .meal-card:hover {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Add hover effect */
+        }
+        .meal-card img {
+            width: 100%;
+            height: auto;
+            border-bottom: 1px solid #dddddd; /* Add border below image */
+        }
+        .meal-name {
+            padding: 16px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+        .navbar {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .navbar a {
+            padding: 6px;
+            margin: 0 5px;
+            text-decoration: none;
+            color: hsl(23, 100%, 61%);
+            font-weight: bold;
+        }
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+        .search-box {
+            padding: 6px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <a href="index.html"><i class="fa fa-home"></i> Home</a>
+        <a href="fav.html"><i class="fa fa-star"></i> Fav</a>
+    </div>
+
+    <h1>Category of Meals</h1>
+    <input type="text" id="searchBox" class="search-box" placeholder="Search for meals..."><br> <!--input search text box-->
+    <div class="meal-container" id="meal-container">
+        <a href="dessert.html" class="meal-card" data-category="dessert">
+            <img src="pancake.jpg" alt="Dessert">
+            <div class="meal-name">Dessert</div>
+        </a>
+        <a href="seafood.html" class="meal-card" data-category="seafood">
+            <img src="seafood.jpg" alt="Seafood">
+            <div class="meal-name">Seafood</div>
+        </a>
+        <a href="side.html" class="meal-card" data-category="side">
+            <img src="pancake.jpg" alt="Side">
+            <div class="meal-name">Side</div>
+        </a>
+        <a href="beef.html" class="meal-card" data-category="beef">
+            <img src="beef.jpg" alt="Beef">
+            <div class="meal-name">Beef</div>
+        </a>
+        <a href="miscellaneous.html" class="meal-card" data-category="miscellaneous">
+            <img src="Pizza.jpg" alt="Miscellaneous">
+            <div class="meal-name">Miscellaneous</div>
+        </a>
+        <a href="pasta.html" class="meal-card" data-category="pasta">
+            <img src="pasta.jpg" alt="Pasta">
+            <div class="meal-name">Pasta</div>
+        </a>
+        <a href="lamb.html" class="meal-card" data-category="lamb">
+            <img src="lamb.jpg" alt="Lamb">
+            <div class="meal-name">Lamb</div>
+        </a>
+        <a href="vegan.html" class="meal-card" data-category="vegan">
+            <img src="vegan.jpg" alt="Vegan">
+            <div class="meal-name">Vegan</div>
+        </a>
+        <a href="vegetarian.html" class="meal-card" data-category="vegetarian">
+            <img src="salad.jpg" alt="Vegetarian">
+            <div class="meal-name">Vegetarian</div>
+        </a>
+        <a href="starter.html" class="meal-card" data-category="starter">
+            <img src="starter.jpg" alt="Starter">
+            <div class="meal-name">Starter</div>
+        </a>
+        <a href="chicken.html" class="meal-card" data-category="chicken">
+            <img src="ayam.jpg" alt="Chicken">
+            <div class="meal-name">Chicken</div>
+        </a>
+    
+        <!-- Add more meal cards as needed -->
+    </div>
+
+    <script>
+        // Add an event listener to the search box that listens for input events
+        document.getElementById('searchBox').addEventListener('input', function() {
+            // Get the current value of the search box and convert it to lowercase
+            const searchTerm = this.value.toLowerCase();
+            
+            // Select all meal card elements
+            const mealCards = document.querySelectorAll('.meal-card');
+
+            // Loop through each meal card
+            mealCards.forEach(card => {
+                // Get the meal name of the current card and convert it to lowercase
+                const mealName = card.querySelector('.meal-name').textContent.toLowerCase();
+                
+                // Check if the meal name includes the search term
+                if (mealName.includes(searchTerm)) {
+                    // If it does, show the card
+                    card.style.display = 'flex';
+                } else {
+                    // If it doesn't, hide the card
+                    card.style.display = 'none';
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

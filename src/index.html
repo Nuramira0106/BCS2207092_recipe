@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>Recipe App</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #353535;
+    }
+    .header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .header-content {
+      display: flex;
+      align-items: center;
+    }
+    h1 {
+      margin-bottom: 20px;
+      font-size: 24px;
+      color: hsl(23, 89%, 56%);
+      margin-right: 10px; /* Adjust spacing between text and image */
+    }
+    .navbar {
+      background-color: #fa632c;
+      padding: 9px 0;
+      text-align: center;
+    }
+    .navbar a {
+      color: rgb(0, 0, 0);
+      text-decoration: none;
+      padding: 10px 20px;
+      margin: 0 5px;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      min-height: 60vh;
+      padding: 20px;
+      text-align: center;
+      color: white;
+      text-shadow: 5px 5px 8px rgba(0, 0, 0, 0.5);
+    }
+    .container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-image: url('food.jpg');
+      background-size: cover;
+      background-position: center;
+      background-color: rgba(0, 0, 0, 0.5); /* Dark overlay */
+      background-blend-mode: darken;
+      z-index: -1;
+    }
+    .container h2 {
+      font-size: 36px; /* Adjust the font size as needed */
+    }
+    .logo {
+      width: 100px;  /* Adjust the width as needed */
+      height: auto;  /* Maintain aspect ratio */
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="header-content">
+      <img src="logo3.png" alt="logo" class="logo">
+      <h1>Recipe App</h1>
+    </div>
+  </div>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <ul>
+      <a href="recipes.html"><i class="fa fa-list"></i> Category</a>
+      <a href="fav.html"><i class="fa fa-star"></i>Fav</a>
+      <!-- Add more navigation links as needed -->
+    </ul>
+  </nav>
+
+  <div class="container">
+    <h2>WELCOME TO MY RECIPE APP</h2>
+  </div>
+
+  <script src="index.js"></script>
+</body>
+</html>
